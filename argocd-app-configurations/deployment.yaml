@@ -1,19 +1,42 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: myapp-etech
+# spec:
+#   selector:
+#     matchLabels:
+#       app: myapp
+#   replicas: 4
+#   template:
+#     metadata:
+#       labels:
+#         app: myapp
+#     spec:
+#       containers:
+#       - name: myapp
+#         image: rudolphnfor/etechapp
+#         ports:
+#         - containerPort: 8080
+
+
+
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp-etech
+  name: vic-deployment
 spec:
   selector:
     matchLabels:
       app: myapp
-  replicas: 4
+  replicas: 10
   template:
     metadata:
       labels:
         app: myapp
     spec:
       containers:
-      - name: myapp
-        image: rudolphnfor/etechapp
+      - name: vic-container
+        image: nginx:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 80

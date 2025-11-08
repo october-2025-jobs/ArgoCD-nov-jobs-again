@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp-etech
+  name: vic-deployment
 spec:
   selector:
     matchLabels:
@@ -13,7 +13,7 @@ spec:
         app: myapp
     spec:
       containers:
-      - name: myapp
-        image: rudolphnfor/etechapp
+      - name: vic-container
+        image: nginx:latest
         ports:
         - containerPort: 8080

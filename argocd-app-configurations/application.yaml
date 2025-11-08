@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/october-2025-jobs/ArgoCD-Oct-jobs-2.git
+    repoURL: https://github.com/october-2025-jobs/ArgoCD-nov-jobs-again.git
     targetRevision: HEAD
     path: dev
   destination: 

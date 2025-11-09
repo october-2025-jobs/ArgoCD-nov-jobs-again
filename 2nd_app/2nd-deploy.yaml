@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 2nd-deployment
+  labels:
+    app: 2nd-label
+spec:
+  replicas: 4 # Specifies the desired number of identical Pods
+  selector:
+    matchLabels:
+      app: 2nd-label # Selects Pods with the label "app: nginx" to be managed by this Deployment
+  template: # Defines the Pod template that the Deployment will create
+    metadata:
+      labels:
+        app: 2nd-label # Labels applied to the Pods created by this Deployment
+    spec:
+      containers:
+      - name: 2nd-container # Name of the container
+        image: nginx:latest # Docker image to use for the container
+        ports:
+        - containerPort: 80 # Port exposed by the container

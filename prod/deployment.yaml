@@ -29,7 +29,7 @@ spec:
   selector:
     matchLabels:
       app: myapp
-  replicas: 7
+  replicas: 5
   template:
     metadata:
       labels:

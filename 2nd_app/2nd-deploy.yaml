@@ -18,4 +18,5 @@ spec:
       - name: 2nd-container # Name of the container
         image: nginx:latest # Docker image to use for the container
         ports:
-        - containerPort: 80 # Port exposed by the container
+
+        - containerPort: 32000 # Port exposed by the container

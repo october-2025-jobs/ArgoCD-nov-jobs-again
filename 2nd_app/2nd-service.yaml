@@ -4,12 +4,14 @@ metadata:
   name: 2nd-service
   namespace: first-bank
 spec:
+  type: NodePort
   selector:
     app: 2nd-label
   ports:
-  - port: 33000
-    protocol: TCP
+  - port: 32000
     targetPort: 32000
+    nodePort: 33000
+
 
 
 

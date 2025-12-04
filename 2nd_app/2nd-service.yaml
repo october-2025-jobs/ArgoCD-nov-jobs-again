@@ -8,9 +8,10 @@ spec:
   selector:
     app: 2nd-label
   ports:
-  - port: 32000
-    targetPort: 32000
-    nodePort: 31000
+  - port: 3200
+    targetPort: 3200
+    nodePort: 31500
+
 
 
 

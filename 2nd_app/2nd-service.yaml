@@ -6,9 +6,10 @@ spec:
   selector:
     app: 2nd-label
   ports:
-  - port: 32000
+  - port: 33000
     protocol: TCP
     targetPort: 32000
+
 
 
 

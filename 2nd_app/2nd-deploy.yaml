@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
       - name: 2nd-container # Name of the container
-        image: nginx:latest # Docker image to use for the container
+        image: alpine:latest # Docker image to use for the container
         ports:
         - containerPort: 3200 # Port exposed by the container
+
 

@@ -8,7 +8,7 @@ spec:
 
   source:
     repoURL: https://github.com/october-2025-jobs/ArgoCD-nov-jobs-again.git
-    targetRevision: HEAD
+    targetRevision: HEAD # this is default main branch
     path: prod
   destination: 
     server: https://kubernetes.default.svc
@@ -19,7 +19,8 @@ spec:
     - CreateNamespace=true
 
     automated:
-      selfHeal: true
-      prune: true
+      selfHeal: true # this specifies the revert back to desired state upon modification in the k8s(default: false)
+      prune: true # prune specifies whether to delete resources from the cluster that are not found in the 
+                   # in the sources anymore as part of automated sync
 
       

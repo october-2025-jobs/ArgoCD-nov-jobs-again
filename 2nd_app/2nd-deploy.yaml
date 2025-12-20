@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: 2nd-deployment
+  namespace: first-bank
   labels:
     app: 2nd-label
 spec:

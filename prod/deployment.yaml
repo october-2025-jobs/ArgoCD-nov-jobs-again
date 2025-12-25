@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vic-deployment
+  name: vic-app-3
 spec:
   selector:
     matchLabels:
       app: myapp
-  replicas: 25
+  replicas: 3
   template:
     metadata:
       labels:

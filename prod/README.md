@@ -1,6 +1,12 @@
 #### Commands
 
 ```bash
+kind create cluster --config cluster-config.yaml
+kubectl get nodes
+```
+
+
+```bash
 # install ArgoCD in k8s
 kubectl create namespace argocd
 kubectl get ns

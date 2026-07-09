@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: vic-app
   namespace: argocd
-spec:
+spec: 
   project: default
 
   source:
@@ -12,7 +12,7 @@ spec:
     path: prod
   destination: 
     server: https://kubernetes.default.svc
-    namespace: vic-namespace
+    namespace: vic-ns
 
   syncPolicy:
     syncOptions:

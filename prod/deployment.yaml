@@ -1,12 +1,43 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: vic-deploy
+#   labels:
+#     app: nginx
+# spec:
+#   replicas: 3
+#   selector:
+#     matchLabels:
+#       app: nginx
+#   template:
+#     metadata:
+#       labels:
+#         app: nginx
+#     spec:
+#       containers:
+#       - name: nginx
+#         image: nginx:1.16.1
+#         ports:
+#         - containerPort: 80
+#         resources:
+#           limits:
+#             cpu: "500m"
+#             memory: "512Mi"
+#           requests:
+#             cpu: "200m"
+#             memory: "256Mi"
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vic-app-3
+  name: vic-deploy
+  namespace: vic-ns
 spec:
   selector:
     matchLabels:
       app: myapp
-  replicas: 30
+  replicas: 6
   template:
     metadata:
       labels:
@@ -14,6 +45,42 @@ spec:
     spec:
       containers:
       - name: vic-container
-        image: nginx:latest
+        image: nginx:1.26.3
         ports:
         - containerPort: 80
+
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: vic-deploy
+#   namespace: vic-ns
+#   labels:
+#     app: myapp
+# spec:
+#   replicas: 8
+#   #revisionHistoryLimit: 10 # Keeps last 10 versions for quick rollbacks
+#   selector:
+#     matchLabels:
+#       app: myapp
+#   strategy:
+#     type: RollingUpdate # Sets the deployment strategy
+#     rollingUpdate:
+#       maxSurge: 25%       # Limits how many extra Pods can be created
+#       maxUnavailable: 0   # Ensures no Pods are taken down until new ones are ready
+#   template:
+#     metadata:
+#       labels:
+#         app: myapp
+#     spec:
+#       containers:
+#       - name: vic-container
+#         image: nginx:1.28.0
+#         ports:
+#         - containerPort: 80
+#         readinessProbe: # Crucial for zero downtime; prevents routing traffic to unready Pods
+#           httpGet:
+#             path: /
+#             port: 80
+#           initialDelaySeconds: 5
+#           periodSeconds: 5

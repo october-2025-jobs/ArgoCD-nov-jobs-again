@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: middle
+  labels:
+    name: middle
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mid-deployment
+  namespace: middle
+spec:
+  selector:
+    matchLabels:
+      role: mid-role
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        role: mid-role
+    spec:
+      containers:
+      - name: mid-container
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mid-service
+  namespace: middle
+spec:
+  selector:
+    role: mid-role
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  

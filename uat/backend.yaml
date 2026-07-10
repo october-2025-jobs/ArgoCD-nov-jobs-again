@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: jay
+spec:
+  selector:
+    matchLabels:
+      app: your-app
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: your-app
+    spec:
+      containers:
+      - name: backend-container
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  namespace: jay
+spec:
+  selector:
+    app: your-app
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  

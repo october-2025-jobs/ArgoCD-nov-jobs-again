@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-crash
+  labels:
+    app: web
+    #environment: production
+spec:
+  containers:
+  - name: busybox-cont
+    image: busybox:latest
+    ports:
+    - containerPort: 80

@@ -32,7 +32,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: vic-deploy
-  namespace: vic-ns
+  namespace: jay
 spec:
   selector:
     matchLabels:

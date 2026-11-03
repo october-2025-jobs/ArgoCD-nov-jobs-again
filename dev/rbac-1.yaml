@@ -1,29 +1,91 @@
+
+#ServiceAccount, Role and RoleBinding
+
+---
 apiVersion: v1
-kind: ServiceAccount   # this is not a Service but k8s api object
+kind: ServiceAccount
 metadata:
-  name: pod-reader-sa
-  namespace: jay
+  name: pod-viewer-sa
+  namespace: development
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  namespace: default
+  namespace: development
   name: pod-reader-role
 rules:
 - apiGroups: [""] # "" indicates the core API group
   resources: ["pods"]
-  verbs: ["get"]
+  verbs: ["get", "watch", "list"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: read-pods-binding
-  namespace: jay
+  namespace: development
 subjects:
 - kind: ServiceAccount
-  name: pod-reader-sa
-  namespace: jay
+  name: pod-viewer-sa
+  namespace: development
 roleRef:
   kind: Role
   name: pod-reader-role
-  apiGroup: rbac.authorization.k8s.io 
+  apiGroup: rbac.authorization.k8s.io
+
+#User, Role and RoleBinding
+
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: Role
+# metadata:
+#   namespace: development
+#   name: pod-reader
+# rules:
+# - apiGroups: [""] # "" indicates the core API group
+#   resources: ["pods", "pods/log"]
+#   verbs: ["get", "list", "watch"]
+# ---
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: RoleBinding
+# metadata:
+#   name: read-pods-binding
+#   namespace: development
+# subjects:
+# - kind: User
+#   name: jane.doe # The User identity targeted by this rule
+#   apiGroup: rbac.authorization.k8s.io
+# roleRef:
+#   kind: Role # Must match the type of role being bound (Role or ClusterRole)
+#   name: pod-reader # Must match the exact name of the Role above
+#   apiGroup: rbac.authorization.k8s.io
+
+
+
+# apiVersion: v1
+# kind: ServiceAccount   # this is not a Service but k8s api object
+# metadata:
+#   name: pod-reader-sa
+#   namespace: jay
+# ---
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: Role
+# metadata:
+#   namespace: default
+#   name: pod-reader-role
+# rules:
+# - apiGroups: [""] # "" indicates the core API group
+#   resources: ["pods"]
+#   verbs: ["get"]
+# ---
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: RoleBinding
+# metadata:
+#   name: read-pods-binding
+#   namespace: jay
+# subjects:
+# - kind: ServiceAccount
+#   name: pod-reader-sa
+#   namespace: jay
+# roleRef:
+#   kind: Role
+#   name: pod-reader-role
+#   apiGroup: rbac.authorization.k8s.io 

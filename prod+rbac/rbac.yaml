@@ -1,0 +1,25 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: vic-role
+  namespace: vic-ns
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list", "delete", "watch"]
+
+# This Role allows get, list, and watch on Pods only in the dev namespace.
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: vic-role-binding
+  namespace: vic-ns
+subjects:
+  - kind: User
+    name: vic
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: vic-role
+  apiGroup: rbac.authorization.k8s.io

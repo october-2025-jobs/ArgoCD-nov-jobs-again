@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-deployment
+  namespace: user-ns
+ 
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: user
+
+  template:
+    metadata:
+      labels:
+        app: user
+
+    spec:
+      containers:
+        - name: user
+
+          # Replace with your ECR image
+          #image: 699475924062.dkr.ecr.us-east-2.amazonaws.com/victor-user:2.0
+          image: nginx:latest
+
+          ports:
+            #- containerPort: 5001
+            - containerPort: 80
+
+
+### `kubernetes/user-service.yaml`
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-service
+  namespace: user-ns
+spec:
+  type: ClusterIP
+
+  selector:
+    app: user
+
+  ports:
+    - protocol: TCP
+      port: 4000
+      #targetPort: 5001
+      targetPort: 80
+

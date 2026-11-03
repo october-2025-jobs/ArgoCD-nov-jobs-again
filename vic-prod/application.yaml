@@ -9,10 +9,11 @@ spec:
   source:
     repoURL: https://github.com/october-2025-jobs/ArgoCD-nov-jobs-again.git
     targetRevision: HEAD
-    path: vic-prod/deploy-service.yaml
+    path: vic-prod/
   destination: 
     server: https://kubernetes.default.svc
-    namespace: obi-ns
+    namespace: mama-ns
+
 
   syncPolicy:
     syncOptions:

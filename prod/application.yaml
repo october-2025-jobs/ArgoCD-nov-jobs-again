@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: vic-app
+  name: good-app
   namespace: argocd
 spec: 
   project: default
@@ -9,10 +9,10 @@ spec:
   source:
     repoURL: https://github.com/october-2025-jobs/ArgoCD-nov-jobs-again.git
     targetRevision: HEAD
-    path: vic-prod/deploy-service.yaml
+    path: prod
   destination: 
     server: https://kubernetes.default.svc
-    namespace: obi-ns
+    namespace: ada-ns
 
   syncPolicy:
     syncOptions:

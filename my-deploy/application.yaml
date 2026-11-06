@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-app
+  namespace: argocd
+spec: 
+  project: default
+
+  source:
+    repoURL: https://github.com/october-2025-jobs/ArgoCD-nov-jobs-again.git
+    targetRevision: HEAD
+    path: my-deploy
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: helm-ns
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true
+
+      
